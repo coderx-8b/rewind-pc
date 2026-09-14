@@ -51,11 +51,11 @@ typedef struct Cpu {
 
 /*
  * op - opcode byte should be given to decoder
- * Note: If decoder fetch another byte for deconding
+ * Note: If decoder fetch another byte for decoding
  * instruction like instructions that use modrm byte 
  * for knowing full instruction type.
- * Or two byte opcodes that further needed another byte
- * modrm byte for knowing the type
+ * Or two byte opcodes that further needs another byte
+ * modrm byte for knowing the type.
  * Than the fetched modrm byte will be stored in 
  * InstructionInfo struct
  *
