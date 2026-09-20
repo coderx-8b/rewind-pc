@@ -3,7 +3,7 @@
 
 // defines all instruction types one byte opcodes and two byte opcodes and group
 // instruction also
-#include <cstdint>
+#include <stdint.h>
 typedef enum InstructionName {
 
   ADD_Eb_Gb,
@@ -143,7 +143,7 @@ typedef enum InstructionName {
   Jb_JNLE,
 
   IMM_Grp1_Eb_Ib,
-  Grp1_Ev_Iv,
+  IMM_Grp1_Ev_Iv,
   MOVB_AL_imm8,
   Grp1_Ev_Ib,
   TEST_Eb_Gb,
@@ -365,44 +365,118 @@ typedef enum InstructionName {
   BSWAP_EDI,
 
   // group instructions 1 - 8
-  Grp1__ADD,
-  Grp1__OR,
-  Grp1__ADC,
-  Grp1__SBB,
-  Grp1__AND,
-  Grp1__SUB,
-  Grp1__XOR,
-  Grp1__CMP,
+  IMM_Grp1_ADD_Eb_Ib,
+  IMM_Grp1_OR_Eb_Ib,
+  IMM_Grp1_ADC_Eb_Ib,
+  IMM_Grp1_SBB_Eb_Ib,
+  IMM_Grp1_AND_Eb_Ib,
+  IMM_Grp1_SUB_Eb_Ib,
+  IMM_Grp1_XOR_Eb_Ib,
+  IMM_Grp1_CMP_Eb_Ib,
 
-  Grp2__ROL,
-  Grp2__ROR,
-  Grp2__RCL,
-  Grp2__RCR,
-  Grp2__SHL,
-  Grp2__SHR,
-  Grp2__SHL1, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
-  Grp2__SAR,
+  IMM_Grp1_ADD_Ev_Iv,
+  IMM_Grp1_OR_Ev_Iv,
+  IMM_Grp1_ADC_Ev_Iv,
+  IMM_Grp1_SBB_Ev_Iv,
+  IMM_Grp1_AND_Ev_Iv,
+  IMM_Grp1_SUB_Ev_Iv,
+  IMM_Grp1_XOR_Ev_Iv,
+  IMM_Grp1_CMP_Ev_Iv,
 
-  Grp3__TEST_Ib_Or_Iv,
-  Grp3__TEST_Ib_Or_Iv1, // TODO same as 1 above
+  Grp1_ADD_Ev_Ib,
+  Grp1_OR_Ev_Ib,
+  Grp1_ADC_Ev_Ib,
+  Grp1_SBB_Ev_Ib,
+  Grp1_AND_Ev_Ib,
+  Grp1_SUB_Ev_Ib,
+  Grp1_XOR_Ev_Ib,
+  Grp1_CMP_Ev_Ib,
 
-  Grp3__NOT,
-  Grp3__NEG,
-  Grp3__MUL_AL_Or_eAX,
-  Grp3__IMUL_AL_Or_eAX,
-  Grp3__DIV_AL_Or_eAX,
-  Grp3__IDIV_AL_Or_eAX,
+  Shift_Grp2_ROL_Eb_Ib,
+  Shift_Grp2_ROR_Eb_Ib,
+  Shift_Grp2_RCL_Eb_Ib,
+  Shift_Grp2_RCR_Eb_Ib,
+  Shift_Grp2_SHL_Eb_Ib,
+  Shift_Grp2_SHR_Eb_Ib,
+  Shift_Grp2_SHL1_Eb_Ib, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+  Shift_Grp2_SAR_Eb_Ib,
 
-  Grp4__INC_Eb,
-  Grp4__DEC_Eb,
+  Shift_Grp2_ROL_Ev_Ib,
+  Shift_Grp2_ROR_Ev_Ib,
+  Shift_Grp2_RCL_Ev_Ib,
+  Shift_Grp2_RCR_Ev_Ib,
+  Shift_Grp2_SHL_Ev_Ib,
+  Shift_Grp2_SHR_Ev_Ib,
+  Shift_Grp2_SHL1_Ev_Ib, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+  Shift_Grp2_SAR_Ev_Ib,
 
-  Grp5__INC_Ev,
-  Grp5__IDEC_Ev,
-  Grp5__CALL_Ev,
-  Grp5__CALL_eP,
-  Grp5__JMP_Ev,
-  Grp5__JMP_Ep,
-  Grp5__PUSH_Ev,
+  Shift_Grp2_ROL_Eb_1,
+  Shift_Grp2_ROR_Eb_1,
+  Shift_Grp2_RCL_Eb_1,
+  Shift_Grp2_RCR_Eb_1,
+  Shift_Grp2_SHL_Eb_1,
+  Shift_Grp2_SHR_Eb_1,
+  Shift_Grp2_SHL1_Eb_1, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+  Shift_Grp2_SAR_Eb_1,
+
+  Shift_Grp2_ROL_Ev_1,
+  Shift_Grp2_ROR_Ev_1,
+  Shift_Grp2_RCL_Ev_1,
+  Shift_Grp2_RCR_Ev_1,
+  Shift_Grp2_SHL_Ev_1,
+  Shift_Grp2_SHR_Ev_1,
+  Shift_Grp2_SHL1_Ev_1, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+  Shift_Grp2_SAR_Ev_1,
+
+  Shift_Grp2_ROL_Eb_CL,
+  Shift_Grp2_ROR_Eb_CL,
+  Shift_Grp2_RCL_Eb_CL,
+  Shift_Grp2_RCR_Eb_CL,
+  Shift_Grp2_SHL_Eb_CL,
+  Shift_Grp2_SHR_Eb_CL,
+  Shift_Grp2_SHL1_Eb_CL, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+  Shift_Grp2_SAR_Eb_CL,
+
+  Shift_Grp2_ROL_Ev_CL,
+  Shift_Grp2_ROR_Ev_CL,
+  Shift_Grp2_RCL_Ev_CL,
+  Shift_Grp2_RCR_Ev_CL,
+  Shift_Grp2_SHL_Ev_CL,
+  Shift_Grp2_SHR_Ev_CL,
+  Shift_Grp2_SHL1_Ev_CL, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+  Shift_Grp2_SAR_Ev_CL,
+
+
+  Unary_Grp3_TEST_Eb_Ib_Or_Iv,
+  Unary_Grp3_TEST_Eb_Ib_Or_Iv1, // TODO same as 1 above
+
+  Unary_Grp3_NOT_Eb,
+  Unary_Grp3_NEG_Eb,
+  Unary_Grp3_MUL_Eb_AL_Or_eAX,
+  Unary_Grp3_IMUL_Eb_AL_Or_eAX,
+  Unary_Grp3_DIV_Eb_AL_Or_eAX,
+  Unary_Grp3_IDIV_Eb_AL_Or_eAX,
+
+  Unary_Grp3_TEST_Ev_Ib_Or_Iv,
+  Unary_Grp3_TEST_Ev_Ib_Or_Iv1, // TODO same as 1 above
+
+  Unary_Grp3_NOT_Ev,
+  Unary_Grp3_NEG_Ev,
+  Unary_Grp3_MUL_Ev_AL_Or_eAX,
+  Unary_Grp3_IMUL_Ev_AL_Or_eAX,
+  Unary_Grp3_DIV_Ev_AL_Or_eAX,
+  Unary_Grp3_IDIV_Ev_AL_Or_eAX,
+
+  Grp4_INC_Or_DEC_INC_Eb,
+  Grp4_INC_Or_DEC_DEC_Eb,
+
+  Grp5_INC_Or_DEC_INC_Ev,
+  Grp5_INC_Or_DEC_IDEC_Ev,
+  Grp5_INC_Or_DEC_CALL_Ev,
+  Grp5_INC_Or_DEC_CALL_eP,
+  Grp5_INC_Or_DEC_JMP_Ev,
+  Grp5_INC_Or_DEC_JMP_Ep,
+  Grp5_INC_Or_DEC_PUSH_Ev,
 
   Grp6__SLDT_Ew,
   Grp6__STR_Ew,
@@ -418,10 +492,12 @@ typedef enum InstructionName {
   Grp7__SMSW_Ms,
   Grp7__LMSW_Ms,
 
-  Grp8__BT,
-  Grp8__BTS,
-  Grp8__BTR,
-  Grp8__BTC,
+  Grp8_Ev_Ib_BT,
+  Grp8_Ev_Ib_BTS,
+  Grp8_Ev_Ib_BTR,
+  Grp8_Ev_Ib_BTC,
+
+  INVALID_OP,
 
 } InstructionName;
 
