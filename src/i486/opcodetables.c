@@ -1,6 +1,6 @@
 #include "i486/instructions.h"
 
-int one_byte_opcodetable[16][16] = {
+InstructionName one_byte_opcodetable[16][16] = {
 
     {ADD_Eb_Gb, ADD_Ev_Gv, ADD_Gb_Eb, ADD_Gv_Ev, ADD_AL_Ib, ADD_eAX_Iv, PUSH_ES,
      POP_ES, OR_Eb_Gb, OR_Ev_Gv, OR_Gb_Eb, OR_Gv_Ev, OR_AL_Ib, OR_eAX_Iv,
@@ -88,6 +88,6 @@ int one_byte_opcodetable[16][16] = {
      Unary_Grp3_Ev, CLC, STC, CLI, STI, CLD, STD, INC_Or_DEC_Grp4,
      INC_Or_DEC_Grp5},
 };
-int two_byte_opcodetable[16][16] = {};
+InstructionName two_byte_opcodetable[16][16] = {};
 
-int group_opcodetable[16][8] = {};
+InstructionName group_opcodetable[16][8] = {};

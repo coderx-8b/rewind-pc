@@ -1,8 +1,8 @@
 #include "i486/cpu.h"
 #include "i486/instructions.h"
 
-extern InstructionName one_byte_opcodetable[0xF][0xF];
-extern InstructionName two_byte_opcodetable[0xF][0xF];
+extern InstructionName one_byte_opcodetable[16][16];
+extern InstructionName two_byte_opcodetable[16][16];
 
 // extra for imm_grp1_Eb_Ib and Ev_Iv etc. instructions
 extern InstructionName group_opcodetable[][0x8];
