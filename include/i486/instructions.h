@@ -4,6 +4,13 @@
 // defines all instruction types one byte opcodes and two byte opcodes and group
 // instruction also
 #include <stdint.h>
+
+constexpr int Default_grp_value = 0xFFF;
+
+#define INST_IS_Grp12345(inst) (inst >= Default_grp_value)  // checking only if greater than Default_grp_value as for one_byte_opcodetable will have only grp 1 2 3 4 and 5 not 6 7 8
+
+#define INST_IS_Grp678(inst) (inst >= (Default_grp_value + 13))
+
 typedef enum InstructionName {
 
   ADD_Eb_Gb,
@@ -142,10 +149,10 @@ typedef enum InstructionName {
   Jb_JLE,
   Jb_JNLE,
 
-  IMM_Grp1_Eb_Ib,
-  IMM_Grp1_Ev_Iv,
+  // IMM_Grp1_Eb_Ib,
+  // IMM_Grp1_Ev_Iv,
   MOVB_AL_imm8,
-  Grp1_Ev_Ib,
+  // Grp1_Ev_Ib,
   TEST_Eb_Gb,
   TEST_Ev_Gv,
   XCHG_Eb_Gb,
@@ -210,8 +217,8 @@ typedef enum InstructionName {
   MOV_eSI,
   MOV_eDI,
 
-  Shift_Grp2_Eb_Ib,
-  Shift_Grp2_Ev_Ib,
+  // Shift_Grp2_Eb_Ib,
+  // Shift_Grp2_Ev_Ib,
   RET_near_Iw,
   // INVALID_OP,
   LES_Gv_Mp,
@@ -227,10 +234,10 @@ typedef enum InstructionName {
   INTO,
   IRET,
 
-  Shift_Grp2_Eb_1,
-  Shift_Grp2_Ev_1,
-  Shift_Grp2_Eb_CL,
-  Shift_Grp2_Ev_CL,
+  // Shift_Grp2_Eb_1,
+  // Shift_Grp2_Ev_1,
+  // Shift_Grp2_Eb_CL,
+  // Shift_Grp2_Ev_CL,
   AAM,
   AAD,
   // INVALID_OP2,
@@ -267,20 +274,20 @@ typedef enum InstructionName {
   REP_REPE,
   HLT,
   CMC,
-  Unary_Grp3_Eb,
-  Unary_Grp3_Ev,
+  // Unary_Grp3_Eb,
+  // Unary_Grp3_Ev,
   CLC,
   STC,
   CLI,
   STI,
   CLD,
   STD,
-  INC__DEC__Grp4,
-  INC__DEC__Grp5,
+  // INC_Or_DEC_Grp4,
+  // INC_Or_DEC_Grp5,
 
   // Two-byte opcodes
-  Grp6,
-  Grp7,
+  // Grp6,
+  // Grp7,
   LAR_Gv_Ew,
   CLTS,
   INVD,
@@ -346,7 +353,7 @@ typedef enum InstructionName {
   LGS_Mp,
   MOVZX_Gv_Eb,
   MOVZX_Gv_Ew,
-  Grp8_Ev_Ib,
+  // Grp8_Ev_Ib,
   BTC_Ev_Gv,
   BSF_Gv_Ev,
   BSR_Gv_Ev,
@@ -497,8 +504,27 @@ typedef enum InstructionName {
   Grp8_Ev_Ib_BTR,
   Grp8_Ev_Ib_BTC,
 
-  INVALID_OP,
 
+  RES_Or_INVALID_OP,
+
+  IMM_Grp1_Eb_Ib = Default_grp_value,
+  IMM_Grp1_Ev_Iv = (Default_grp_value + 1),
+  Grp1_Ev_Ib = (Default_grp_value + 2),
+  
+  Shift_Grp2_Eb_Ib = (Default_grp_value + 3),
+  Shift_Grp2_Ev_Ib = (Default_grp_value + 4),
+
+  Shift_Grp2_Eb_1 = (Default_grp_value + 5),
+  Shift_Grp2_Ev_1 = (Default_grp_value + 6),
+  Shift_Grp2_Eb_CL = (Default_grp_value + 7),
+  Shift_Grp2_Ev_CL = (Default_grp_value + 8),
+  Unary_Grp3_Eb = (Default_grp_value + 9),
+  Unary_Grp3_Ev = (Default_grp_value + 10),
+  INC_Or_DEC_Grp4 = (Default_grp_value + 11), 
+  INC_Or_DEC_Grp5 = (Default_grp_value + 12),
+  Grp6 = (Default_grp_value + 13),
+  Grp7 = (Default_grp_value + 14),
+  Grp8_Ev_Ib = (Default_grp_value + 15)
 } InstructionName;
 
 // TODO mod_rm for know is temprory
