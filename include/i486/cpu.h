@@ -17,6 +17,7 @@
 typedef struct Bus Bus;
 // needs to be defined somewhere
 uint8_t mem_byte_fetch(Bus *bus, uint32_t addr);
+uint8_t mem_fetch_next_byte(Bus *bus);
 uint16_t mem_word_fetch(Bus *bus, uint32_t addr);
 uint32_t mem_dword_fetch(Bus *bus, uint32_t addr);
 

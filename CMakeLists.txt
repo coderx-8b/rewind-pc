@@ -52,6 +52,12 @@ target_compile_options(rewind PRIVATE
 )
 
 
+# --- TESTS ---
+add_executable(rewind_tests tests/main.c tests/cpu/test_decoder.c tests/cpu/test_decoder.h)
+target_compile_features(rewind_tests PRIVATE c_std_23)
+target_link_libraries(rewind_tests PRIVATE i486)
+
+
 # --- Installation Rules ---
 # This rule handles copying both the executable and library binaries safely
 install(TARGETS rewind i486

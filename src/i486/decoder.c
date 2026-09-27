@@ -18,7 +18,7 @@ InstructionName decode(Cpu *cpu, uint8_t op, InstructionInfo *inst_info) {
   InstructionName inst_name;
   if (op == 0x0F) {
     // two byte opcode table
-    op = mem_byte_fetch(cpu->bus, cpu->eip);
+    op = mem_fetch_next_byte(cpu->bus);
     row_in_op = (op >> 4);
     col_in_op = (op & 0xF);
     inst_name = two_byte_opcodetable[row_in_op][col_in_op];
@@ -27,7 +27,7 @@ InstructionName decode(Cpu *cpu, uint8_t op, InstructionInfo *inst_info) {
         // instruction either of type grp6 7 or 8
         
         // mod/rm byte [5-3] selects the opcode in group 6
-        op = mem_byte_fetch(cpu->bus, cpu->eip);
+        op = mem_fetch_next_byte(cpu->bus);
         inst_info->mod_rm = op;
         index = ((op >> 3) & 0x7);
         inst_name = group_opcodetable[Get_Grp_Index(inst_name)][index];
@@ -41,7 +41,7 @@ InstructionName decode(Cpu *cpu, uint8_t op, InstructionInfo *inst_info) {
 
     inst_name = one_byte_opcodetable[row_in_op][col_in_op];
     if (INST_IS_Grp12345(inst_name)) {
-        op = mem_byte_fetch(cpu->bus, cpu->eip);
+        op = mem_fetch_next_byte(cpu->bus);
         inst_info->mod_rm = op;
         index = ((op >> 3) & 0x7);
         inst_name = group_opcodetable[Get_Grp_Index(inst_name)][index];
