@@ -88,6 +88,299 @@ InstructionName one_byte_opcodetable[16][16] = {
      Unary_Grp3_Ev, CLC, STC, CLI, STI, CLD, STD, INC_Or_DEC_Grp4,
      INC_Or_DEC_Grp5},
 };
-InstructionName two_byte_opcodetable[16][16] = {};
 
-InstructionName group_opcodetable[16][8] = {};
+InstructionName two_byte_opcodetable[16][16] = {
+
+    {Grp6, Grp7, LAR_Gv_Ew, LSL_Gv_Ew, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     CLTS, RES_Or_INVALID_OP, INVD, WBINVD, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+
+    {MOV_Cd_Rd, MOV_Dd_Rd, MOV_Rd_Cd, MOV_Rd_Dd, MOV_Td_Rd, RES_Or_INVALID_OP,
+     MOV_Rd_Td, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP},
+
+    // row -3
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+    // row 4
+
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+    // row 5
+
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+    // row 6
+
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+    // row 7
+
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+
+    // row 8
+    {Jv_JO, Jv_JNO, Jv_JB, Jv_JNB, Jv_JZ, Jv_JNZ, Jv_JBE, Jv_JNBE, Jv_JS,
+     Jv_JNS, Jv_JP, Jv_JNP, Jv_JL, Jv_JNL, Jv_JLE, Jv_JNLE},
+
+    // row 9
+    {
+        Eb_SETO,
+        Eb_SETNO,
+        Eb_SETB,
+        Eb_SETNB,
+        Eb_SETZ,
+        Eb_SETNZ,
+        Eb_SETBE,
+        Eb_SETNBE,
+        Eb_SETS,
+        Eb_SETNS,
+        Eb_SETP,
+        Eb_SETNP,
+        Eb_SETL,
+        Eb_SETNL,
+        Eb_SETLE,
+        Eb_SETNLE,
+    },
+
+    // row 10
+
+    {PUSH_FS, POP_FS, RES_Or_INVALID_OP, BT_Ev_Gv, SHLD_EvGvIb, SHLD_EvGvCL,
+     CMPXCHG_Eb_Gb, CMPXCHG_Ev_Gv, PUSH_GS, POP_GS, RES_Or_INVALID_OP,
+     BTS_Ev_Gv, shrd_EvGvIb, SHRD__EvGvCL, RES_Or_INVALID_OP, IMUL_Gv_Ev},
+    // row 11
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, LSS_Mp, BTR_Ev_Gv, LFS_Mp, LGS_Mp,
+     MOVZX_Gv_Eb, MOVZX_Gv_Ew, RES_Or_INVALID_OP, RES_Or_INVALID_OP, Grp8_Ev_Ib,
+     BTC_Ev_Gv, BSF_Gv_Ev, BSR_Gv_Ev, MOVSX_Gv_Eb, MOVSX_Gv_Ew},
+    // row 12
+    {XADD_Eb_Gb, XADD_Ev_Gv, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     BSWAP_EAX, BSWAP_ECX, BSWAP_EDX, BSWAP_EBX, BSWAP_ESP, BSWAP_EBP,
+     BSWAP_ESI, BSWAP_EDI},
+    // row 13
+
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+    // row 14
+
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+    // row 15
+
+    {RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP, RES_Or_INVALID_OP, RES_Or_INVALID_OP,
+     RES_Or_INVALID_OP},
+};
+
+InstructionName group_opcodetable[16][8] = {
+    {
+
+        IMM_Grp1_ADD_Eb_Ib,
+        IMM_Grp1_OR_Eb_Ib,
+        IMM_Grp1_ADC_Eb_Ib,
+        IMM_Grp1_SBB_Eb_Ib,
+        IMM_Grp1_AND_Eb_Ib,
+        IMM_Grp1_SUB_Eb_Ib,
+        IMM_Grp1_XOR_Eb_Ib,
+        IMM_Grp1_CMP_Eb_Ib,
+    },
+    {
+
+        IMM_Grp1_ADD_Ev_Iv,
+        IMM_Grp1_OR_Ev_Iv,
+        IMM_Grp1_ADC_Ev_Iv,
+        IMM_Grp1_SBB_Ev_Iv,
+        IMM_Grp1_AND_Ev_Iv,
+        IMM_Grp1_SUB_Ev_Iv,
+        IMM_Grp1_XOR_Ev_Iv,
+        IMM_Grp1_CMP_Ev_Iv,
+    },
+    {
+
+        Grp1_ADD_Ev_Ib,
+        Grp1_OR_Ev_Ib,
+        Grp1_ADC_Ev_Ib,
+        Grp1_SBB_Ev_Ib,
+        Grp1_AND_Ev_Ib,
+        Grp1_SUB_Ev_Ib,
+        Grp1_XOR_Ev_Ib,
+        Grp1_CMP_Ev_Ib,
+    },
+    {
+
+        Shift_Grp2_ROL_Eb_Ib,
+        Shift_Grp2_ROR_Eb_Ib,
+        Shift_Grp2_RCL_Eb_Ib,
+        Shift_Grp2_RCR_Eb_Ib,
+        Shift_Grp2_SHL_Eb_Ib,
+        Shift_Grp2_SHR_Eb_Ib,
+        Shift_Grp2_SHL1_Eb_Ib, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+        Shift_Grp2_SAR_Eb_Ib,
+    },
+    {
+
+        Shift_Grp2_ROL_Ev_Ib,
+        Shift_Grp2_ROR_Ev_Ib,
+        Shift_Grp2_RCL_Ev_Ib,
+        Shift_Grp2_RCR_Ev_Ib,
+        Shift_Grp2_SHL_Ev_Ib,
+        Shift_Grp2_SHR_Ev_Ib,
+        Shift_Grp2_SHL1_Ev_Ib, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+        Shift_Grp2_SAR_Ev_Ib,
+    },
+
+    {
+
+        Shift_Grp2_ROL_Eb_1,
+        Shift_Grp2_ROR_Eb_1,
+        Shift_Grp2_RCL_Eb_1,
+        Shift_Grp2_RCR_Eb_1,
+        Shift_Grp2_SHL_Eb_1,
+        Shift_Grp2_SHR_Eb_1,
+        Shift_Grp2_SHL1_Eb_1, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+        Shift_Grp2_SAR_Eb_1,
+    },
+    {
+
+        Shift_Grp2_ROL_Ev_1,
+        Shift_Grp2_ROR_Ev_1,
+        Shift_Grp2_RCL_Ev_1,
+        Shift_Grp2_RCR_Ev_1,
+        Shift_Grp2_SHL_Ev_1,
+        Shift_Grp2_SHR_Ev_1,
+        Shift_Grp2_SHL1_Ev_1, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+        Shift_Grp2_SAR_Ev_1,
+    },
+    {
+
+        Shift_Grp2_ROL_Eb_CL,
+        Shift_Grp2_ROR_Eb_CL,
+        Shift_Grp2_RCL_Eb_CL,
+        Shift_Grp2_RCR_Eb_CL,
+        Shift_Grp2_SHL_Eb_CL,
+        Shift_Grp2_SHR_Eb_CL,
+        Shift_Grp2_SHL1_Eb_CL, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+        Shift_Grp2_SAR_Eb_CL,
+    },
+    {
+
+        Shift_Grp2_ROL_Ev_CL,
+        Shift_Grp2_ROR_Ev_CL,
+        Shift_Grp2_RCL_Ev_CL,
+        Shift_Grp2_RCR_Ev_CL,
+        Shift_Grp2_SHL_Ev_CL,
+        Shift_Grp2_SHR_Ev_CL,
+        Shift_Grp2_SHL1_Ev_CL, // TODO 1.see if Grp2__SHL == Grp2__SHL[1]
+        Shift_Grp2_SAR_Ev_CL,
+    },
+    {
+
+        Unary_Grp3_TEST_Eb_Ib_Or_Iv,
+        Unary_Grp3_TEST_Eb_Ib_Or_Iv1, // TODO same as 1 above
+
+        Unary_Grp3_NOT_Eb,
+        Unary_Grp3_NEG_Eb,
+        Unary_Grp3_MUL_Eb_AL_Or_eAX,
+        Unary_Grp3_IMUL_Eb_AL_Or_eAX,
+        Unary_Grp3_DIV_Eb_AL_Or_eAX,
+        Unary_Grp3_IDIV_Eb_AL_Or_eAX,
+    },
+    {
+
+        Unary_Grp3_TEST_Ev_Ib_Or_Iv,
+        Unary_Grp3_TEST_Ev_Ib_Or_Iv1, // TODO same as 1 above
+
+        Unary_Grp3_NOT_Ev,
+        Unary_Grp3_NEG_Ev,
+        Unary_Grp3_MUL_Ev_AL_Or_eAX,
+        Unary_Grp3_IMUL_Ev_AL_Or_eAX,
+        Unary_Grp3_DIV_Ev_AL_Or_eAX,
+        Unary_Grp3_IDIV_Ev_AL_Or_eAX,
+    },
+    {
+
+        Grp4_INC_Or_DEC_INC_Eb,
+        Grp4_INC_Or_DEC_DEC_Eb,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+    },
+    {
+
+        Grp5_INC_Or_DEC_INC_Ev,
+        Grp5_INC_Or_DEC_IDEC_Ev,
+        Grp5_INC_Or_DEC_CALL_Ev,
+        Grp5_INC_Or_DEC_CALL_eP,
+        Grp5_INC_Or_DEC_JMP_Ev,
+        Grp5_INC_Or_DEC_JMP_Ep,
+        Grp5_INC_Or_DEC_PUSH_Ev,
+        RES_Or_INVALID_OP,
+    },
+    {
+
+        Grp6__SLDT_Ew,
+        Grp6__STR_Ew,
+        Grp6__LLDT_Ew,
+        Grp6__LTR_Ew,
+        Grp6__VERR_Ew,
+        Grp6__VERW_Ew,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+    },
+    {
+
+        Grp7__SGDT_Ms,
+        Grp7__SIDT_Ms,
+        Grp7__LGDT_Ms,
+        Grp7__LIDT_Ms,
+        Grp7__SMSW_Ew,
+        RES_Or_INVALID_OP,
+        Grp7__LMSW_Ew,
+        RES_Or_INVALID_OP,
+    },
+
+    {
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+        RES_Or_INVALID_OP,
+        Grp8_Ev_Ib_BT,
+        Grp8_Ev_Ib_BTS,
+        Grp8_Ev_Ib_BTR,
+        Grp8_Ev_Ib_BTC,
+    },
+
+};

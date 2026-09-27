@@ -289,6 +289,7 @@ typedef enum InstructionName {
   // Grp6,
   // Grp7,
   LAR_Gv_Ew,
+  LSL_Gv_Ew,
   CLTS,
   INVD,
   WBINVD,
@@ -337,14 +338,15 @@ typedef enum InstructionName {
   PUSH_FS,
   POP_FS,
   BT_Ev_Gv,
-  SHLD__Ev__Gv__Ib,
-  SHLD_Ev__Gv__CL,
+  SHLD_EvGvIb,
+  SHLD_EvGvCL,
   CMPXCHG_Eb_Gb,
   CMPXCHG_Ev_Gv,
   PUSH_GS,
   POP_GS,
   BTS_Ev_Gv,
-  SHRD__Ev__Gv__CL,
+  shrd_EvGvIb,
+  SHRD__EvGvCL,
   IMUL_Gv_Ev,
 
   LSS_Mp,
@@ -456,7 +458,6 @@ typedef enum InstructionName {
 
   Unary_Grp3_TEST_Eb_Ib_Or_Iv,
   Unary_Grp3_TEST_Eb_Ib_Or_Iv1, // TODO same as 1 above
-
   Unary_Grp3_NOT_Eb,
   Unary_Grp3_NEG_Eb,
   Unary_Grp3_MUL_Eb_AL_Or_eAX,
@@ -466,7 +467,6 @@ typedef enum InstructionName {
 
   Unary_Grp3_TEST_Ev_Ib_Or_Iv,
   Unary_Grp3_TEST_Ev_Ib_Or_Iv1, // TODO same as 1 above
-
   Unary_Grp3_NOT_Ev,
   Unary_Grp3_NEG_Ev,
   Unary_Grp3_MUL_Ev_AL_Or_eAX,
@@ -496,8 +496,8 @@ typedef enum InstructionName {
   Grp7__SIDT_Ms,
   Grp7__LGDT_Ms,
   Grp7__LIDT_Ms,
-  Grp7__SMSW_Ms,
-  Grp7__LMSW_Ms,
+  Grp7__SMSW_Ew,
+  Grp7__LMSW_Ew,
 
   Grp8_Ev_Ib_BT,
   Grp8_Ev_Ib_BTS,
