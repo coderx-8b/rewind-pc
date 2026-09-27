@@ -39,7 +39,7 @@ uint8_t mem_fetch_next_byte(Bus *_) {
 
 }
 
-static InstructionName onebyteopcodes[] = {
+static InstructionName opcodes[] = {
     NOP,
     ADD_Eb_Gb,
     ADD_eAX_Iv,
@@ -56,6 +56,13 @@ static InstructionName onebyteopcodes[] = {
     IMM_Grp1_AND_Ev_Iv,
     Grp1_ADC_Ev_Ib,
     CWD,
+    Grp6__LTR_Ew,
+    Grp7__LMSW_Ew,
+    RES_Or_INVALID_OP,
+    // MOVSX_Gv_Ew,
+    // CMPXCHG_Eb_Gb
+
+
 };
 
 
@@ -84,21 +91,40 @@ void test_decoder_default() {
     insts[18] = 0b00010000;
     insts[19] = 0x99;   // CWD
 
+    // Two byte opcodes
+    insts[20] = 0x0F;
+    insts[21] = 0x00;   // Grp6_LTR_Ew
+    insts[22] = 0b00011000;
+
+    insts[23] = 0x0F;
+    insts[24] = 0x01;       // Grp7_LMSW_Ew
+    insts[25] = 0b00110000;
+
+    insts[26] = 0x0F;
+    insts[27] = 0x01;       // Grp7 invalid
+    insts[28] = 0b00101000;
+
+    insts[29] = 0x0F;
+    insts[30] = 0xBF;   // MOVSX_Gv_Ew
+
+    insts[31] = 0x0F;
+    insts[32] = 0xA6;   // CMPXCHG_Eb_Gb
+
     Cpu cpu;
     Bus bus;
     bus.cpu = &cpu;
     cpu.eip = 0;
     cpu.bus = &bus;
     
-    int sz = sizeof(onebyteopcodes) / sizeof(InstructionName);
+    int sz = sizeof(opcodes) / sizeof(InstructionName);
     printf("Testing test_decoder_default for %d tests...\n", sz);
     int failed_cases = 0;
     for (int i = 0; i < sz; i++) {
         InstructionInfo info = {.mod_rm = 0};
         InstructionName name = decode(&cpu, insts[curr_inst++], &info);
 
-        if (name != onebyteopcodes[i]) {
-            printf("Failed at %d, expected %d but got %d\n", i, onebyteopcodes[i], name);
+        if (name != opcodes[i]) {
+            printf("Failed at %d, expected %d but got %d\n", i+1, opcodes[i], name);
             ++failed_cases;
         }
 
