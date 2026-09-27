@@ -28,9 +28,9 @@ An IBM PC emulator of the Intel 80486 (i486) processor, with the ultimate goal o
 ### Goals & Progress
 
 #### i486 CPU
-- [x] Decoder
-- [x] Execution Unit
-- [x] Memory
+- [ ] Decoder
+- [ ] Execution Unit
+- [ ] Memory
 
 #### Whole Emulator
 - [ ] Booting Windows 3.1
