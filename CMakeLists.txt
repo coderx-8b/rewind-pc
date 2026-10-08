@@ -17,8 +17,18 @@ include(GNUInstallDirs)
 
 # --- Target: i486 Library ---
 add_library(i486 STATIC 
+    src/i486/cpu.c
     src/i486/decoder.c 
     src/i486/opcodetables.c
+    src/i486/memory.c
+)
+
+
+add_library(bot_utils STATIC 
+    src/bot_utils.c
+)
+target_include_directories(bot_utils PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 )
 
 # Isolate include directories for local builds vs future installations
@@ -28,12 +38,13 @@ target_include_directories(i486 PUBLIC
 )
 
 target_compile_features(i486 PUBLIC c_std_23)
+target_compile_features(bot_utils PUBLIC c_std_23)
 
 
 # --- Target: rewind Executable ---
 add_executable(rewind src/main.c)
 target_compile_features(rewind PRIVATE c_std_23)
-target_link_libraries(rewind PRIVATE i486)
+target_link_libraries(rewind PRIVATE i486 bot_utils)
 
 
 # --- Compiler Warnings Configuration ---
@@ -55,7 +66,7 @@ target_compile_options(rewind PRIVATE
 # --- TESTS ---
 add_executable(rewind_tests tests/main.c tests/cpu/test_decoder.c tests/cpu/test_decoder.h)
 target_compile_features(rewind_tests PRIVATE c_std_23)
-target_link_libraries(rewind_tests PRIVATE i486)
+target_link_libraries(rewind_tests PRIVATE i486 bot_utils)
 
 
 # --- Installation Rules ---

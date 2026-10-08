@@ -31,4 +31,6 @@ void init_memory(Memory *mem, MemConfig *conf) {
 
   // installed_ram must be in range 2-64
   mem->high_ram = (uint8_t *)malloc(conf->installed_ram * MB);
+
+  printf("Initialized System Bios & High ram.\n");
 }
