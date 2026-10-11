@@ -1,5 +1,6 @@
 #include "i486/cpu.h"
 #include <stdint.h>
+#include <i486/memory.h>
 
 
 

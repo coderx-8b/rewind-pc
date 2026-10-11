@@ -3,6 +3,7 @@
 
 #include "instructions.h"
 #include <stdint.h>
+#include "bus.h"
 
 // Consider using this when you need to access other 16bit and 8bit parts of a
 // register ex. #define AX   GET_LOW_WORD(eax) or #define AX(reg)
@@ -14,12 +15,13 @@
 
 // needs to be defined somewhere so cpu can have access to other components
 // connected via bus
-typedef struct Bus Bus;
 // needs to be defined somewhere
 uint8_t mem_byte_fetch(Bus *bus, uint32_t addr);
 uint8_t mem_fetch_next_byte(Bus *bus);
 uint16_t mem_word_fetch(Bus *bus, uint32_t addr);
 uint32_t mem_dword_fetch(Bus *bus, uint32_t addr);
+
+
 
 typedef struct Cpu {
 
