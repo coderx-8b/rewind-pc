@@ -2,12 +2,13 @@
 #define _REWIND_i486_BUS_H
 
 #include <stdint.h>
+#include "cpu.h"
+#include "memory.h"
 
 
-typedef struct Cpu Cpu;
-typedef struct Memory Memory;
 
 typedef struct Bus {
+    bool high_fetch; // this controls how linear address is calculated after reset in real mode
     Cpu *cpu;
     Memory *mem;
 

@@ -3,7 +3,6 @@
 
 #include "instructions.h"
 #include <stdint.h>
-#include "bus.h"
 
 // Consider using this when you need to access other 16bit and 8bit parts of a
 // register ex. #define AX   GET_LOW_WORD(eax) or #define AX(reg)
@@ -12,6 +11,8 @@
 #define GET_LOW_BYTE(reg) (reg & 0xFFu)
 #define GET_HIGH_BYTE(reg) ((reg >> 8) & 0xFFu)
 #define GET_LOW_WORD(reg) (reg & 0xFFFFu)
+
+typedef struct Bus Bus;
 
 // needs to be defined somewhere so cpu can have access to other components
 // connected via bus
