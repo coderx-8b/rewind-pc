@@ -29,7 +29,7 @@ uint8_t fetch_inst(Bus *bus) {
     if (cpu->eip > 0xFFFF) {
       // TODO: generate General protection exception (do again after basics are
       // implemented)
-      generate_gp(bus);
+      generate_gp(bus); // TODO: temprory impl
     }
 
     // TODO: check for other way to do this like seprate fuction
