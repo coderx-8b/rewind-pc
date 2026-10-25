@@ -3,6 +3,6 @@
 #include "i486/bus.h"
 #include <stdint.h>
 
-uint32_t gen_rm_addr(Bus *bus, uint32_t addr);
-uint32_t gen_pm_addr(Bus *bus, uint32_t addr);
+uint32_t gen_rm_addr(Bus *bus);
+uint32_t gen_pm_addr(Bus *bus);
 #endif

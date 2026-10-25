@@ -1,5 +1,5 @@
 #include "i486/bus.h"
-#include "i486/exceptions.h"
+#include "i486/mmu.h"
 
 // protection enable bit | 0 - Real Mode , 1 - Protected mode
 #define PE(CR0) (CR0 & 1)
@@ -18,31 +18,13 @@ bool init_bus(Bus *bus) {
 
 // TODO: Exceptions, see when to generate exceptions
 uint8_t fetch_inst(Bus *bus) {
-  const Cpu *cpu = bus->cpu;
 
-  uint32_t linear_addr = 0;
-
-  if (PE(cpu->cr0) == 0) {
+  if (PE(bus->cpu->cr0) == 0) {
     // processor in real mode
-
-    // NOTE: by default the limit is 0xFFFF in real mode
-    if (cpu->eip > 0xFFFF) {
-      // TODO: generate General protection exception (do again after basics are
-      // implemented)
-      generate_gp(bus); // TODO: temprory impl
-    }
-
-    // TODO: check for other way to do this like seprate fuction
-    if (bus->high_fetch) {
-      linear_addr = cpu->cs.base_addr + cpu->eip;
-    } else {
-      linear_addr = ((uint32_t)cpu->cs.selector << 4) + cpu->eip;
-    }
-    return mem_get_byte(bus->mem, linear_addr);
+    return mem_get_byte(bus->mem, gen_rm_addr(bus));
   } else {
     // in protected mode
-
+    return mem_get_byte(bus->mem, gen_pm_addr(bus));
   }
-
   return 0xFF;
 }
