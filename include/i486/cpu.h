@@ -143,7 +143,7 @@ typedef struct Cpu {
  */
 
 // Initializes the cpu to the default state of registers
-bool init_cpu(Cpu *cpu, Bus *bus);
+bool init_cpu(Cpu *cpu);
 
 InstructionName decode(Cpu *cpu, uint8_t op, InstructionInfo *inst_info);
 

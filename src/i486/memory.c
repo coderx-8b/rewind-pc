@@ -3,16 +3,23 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <i486/bus.h>
 
 #define _BOT_UTILS_DEBUG_
 constexpr unsigned int KB = 1024;
 constexpr unsigned int bios_buff_size = 128 * KB;
 constexpr unsigned int MB = 1024 * KB;
 
+static void inline apply_a20_gate(bool a20_gate, uint32_t *addr) {
+    if (!a20_gate) {
+        *addr = (*addr) & (uint32_t)(~0x00010000);
+    }
+}
+
 void init_memory(Memory *mem, MemConfig *conf) {
 
-  if (!mem) {
-    printf("init_memory() : *mem is null\n");
+  if (mem == nullptr || mem->bus == nullptr) {
+    printf("init_memory() : *mem is null or *bus is null\n");
     return;
   }
 
@@ -37,6 +44,15 @@ void init_memory(Memory *mem, MemConfig *conf) {
   printf("Initialized System Bios & High ram.\n");
 }
 
+
+
+uint8_t mem_get_byte(Memory *mem, uint32_t addr) {
+    apply_a20_gate(mem->bus->a20_gate, &addr);
+
+    // TODO: Apply memory map
+
+    return 0xFF;
+}
 
 
 

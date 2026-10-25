@@ -37,9 +37,9 @@ static inline void slwlb(uint32_t *reg, uint8_t val) {
 
 
 // Returns false if initialization fails or true on success
-bool init_cpu(Cpu *cpu, Bus *bus) {
+bool init_cpu(Cpu *cpu) {
 
-    if (cpu == nullptr || bus == nullptr) return false;
+    if (cpu == nullptr || cpu->bus == nullptr) return false;
 
     cpu->eip = 0x0000FFF0;
     cpu->eflags = 0x00000002;

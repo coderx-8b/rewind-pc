@@ -3,7 +3,10 @@
 
 #include <stdint.h>
 
+typedef struct Bus Bus;
+
 typedef struct Memory {
+  Bus *bus;
   uint8_t *sys_bios;
   uint8_t *high_ram;
   uint8_t *low_ram;

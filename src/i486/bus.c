@@ -4,6 +4,16 @@
 // protection enable bit | 0 - Real Mode , 1 - Protected mode
 #define PE(CR0) (CR0 & 1)
 
+bool init_bus(Bus *bus) {
+  if (bus == nullptr || bus->mem == nullptr || bus->cpu == nullptr)
+    return false;
+
+  bus->a20_gate = true;
+  bus->high_fetch = true;
+
+  return true;
+}
+
 // NOTE: instruction fetch default to CS segment selector
 
 // TODO: Exceptions, see when to generate exceptions
@@ -17,7 +27,8 @@ uint8_t fetch_inst(Bus *bus) {
 
     // NOTE: by default the limit is 0xFFFF in real mode
     if (cpu->eip > 0xFFFF) {
-      // TODO: generate General protection exception
+      // TODO: generate General protection exception (do again after basics are
+      // implemented)
       generate_gp(bus);
     }
 
@@ -28,6 +39,9 @@ uint8_t fetch_inst(Bus *bus) {
       linear_addr = ((uint32_t)cpu->cs.selector << 4) + cpu->eip;
     }
     return mem_get_byte(bus->mem, linear_addr);
+  } else {
+    // in protected mode
+
   }
 
   return 0xFF;

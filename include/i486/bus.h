@@ -9,10 +9,13 @@
 
 typedef struct Bus {
     bool high_fetch; // this controls how linear address is calculated after reset in real mode
+    bool a20_gate;  // a20 gate controls address wrap arround for real mode
     Cpu *cpu;
     Memory *mem;
 
 } Bus;
+
+bool init_bus(Bus *bus);
 
 uint8_t fetch_inst(Bus *bus);
 
