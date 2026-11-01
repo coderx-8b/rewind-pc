@@ -12,6 +12,11 @@
 #define GET_HIGH_BYTE(reg) ((reg >> 8) & 0xFFu)
 #define GET_LOW_WORD(reg) (reg & 0xFFFFu)
 
+// protection enable bit | 0 - Real Mode , 1 - Protected mode
+#define PE(CR0) (CR0 & 1)
+#define PG(CR0) (CR0 >> 31)
+
+
 typedef struct Bus Bus;
 
 // needs to be defined somewhere so cpu can have access to other components

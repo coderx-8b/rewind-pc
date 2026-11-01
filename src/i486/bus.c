@@ -1,8 +1,6 @@
 #include "i486/bus.h"
 #include "i486/mmu.h"
 
-// protection enable bit | 0 - Real Mode , 1 - Protected mode
-#define PE(CR0) (CR0 & 1)
 
 bool init_bus(Bus *bus) {
   if (bus == nullptr || bus->mem == nullptr || bus->cpu == nullptr)

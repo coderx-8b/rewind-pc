@@ -10,11 +10,6 @@ constexpr unsigned int KB = 1024;
 constexpr unsigned int bios_buff_size = 128 * KB;
 constexpr unsigned int MB = 1024 * KB;
 
-static void inline apply_a20_gate(bool a20_gate, uint32_t *addr) {
-    if (!a20_gate) {
-        *addr = (*addr) & (uint32_t)(~0x00010000);
-    }
-}
 
 void init_memory(Memory *mem, MemConfig *conf) {
 
@@ -47,7 +42,6 @@ void init_memory(Memory *mem, MemConfig *conf) {
 
 
 uint8_t mem_get_byte(Memory *mem, uint32_t addr) {
-    apply_a20_gate(mem->bus->a20_gate, &addr);
 
     // TODO: Apply memory map
 
